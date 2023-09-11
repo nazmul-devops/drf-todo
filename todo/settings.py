@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import timedelta
 
 # import environ
 # import os
@@ -29,12 +30,14 @@ ALLOWED_HOSTS = []
 # Application definition
 CUSTOM_APPS = [
     "taskManagement.apps.TaskmanagementConfig",
-    # 'taskManagement.apps.TaskmanagementConfig',
+    "authenticaion.apps.AuthenticaionConfig",
+    "core.apps.CoreConfig",
 ]
 
 THIRD_PARTY_APPS = [
     "rest_framework",
     'drf_yasg',
+    'rest_framework_simplejwt',
 ]
 
 INSTALLED_APPS = (
@@ -61,6 +64,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "todo.urls"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 TEMPLATES = [
     {
@@ -132,3 +141,18 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=12),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    },
+}

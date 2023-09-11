@@ -7,6 +7,7 @@ from drf_yasg import openapi
 
 from core import urls as core_urls
 from taskManagement import urls as taskManagement_urls
+from authenticaion import urls as authenticaion_urls
 
 
 schema_view = get_schema_view(
@@ -26,13 +27,14 @@ urlpatterns = [
     path('', lambda request: HttpResponse("<h1 style='text-align: center; margin-top: 30px;'>Welcome To ToDo Backend</h1>", content_type="text/html")),
     path('admin/', admin.site.urls),
     path('api/core/', include(core_urls)),
-    path('api/', include(taskManagement_urls)),
+    path('api/task/', include(taskManagement_urls)),
+    path('api/auth/', include(authenticaion_urls)),
 ]
 
 swagger_urlpatterns = [
-   path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+   # path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
    path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-   path('api/docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+   path('api/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
    path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
 

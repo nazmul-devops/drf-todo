@@ -8,6 +8,7 @@ User = get_user_model()
 # Create your models here.
 class Project(BaseTimeStampedModel):
     name = models.CharField(max_length=500, unique=True)
+    description = models.TextField(blank=True)
     project_manager = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
