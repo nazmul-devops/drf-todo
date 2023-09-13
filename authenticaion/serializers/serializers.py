@@ -4,11 +4,9 @@ from taskManagement.models.models import Project
 
 User = get_user_model()
 
+
 class UserDetailsSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ("id", "username", "email")
-class ProjecManagerDetailsSerializer(ModelSerializer):
-    class Meta:
-        model = User
-        fields = ("id", "username", "email")
+

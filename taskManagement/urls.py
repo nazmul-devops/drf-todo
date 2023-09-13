@@ -15,6 +15,9 @@ urlpatterns = [
     ),
     path("ping/", HealthCheakAPIView.as_view(), name="ping"),
     path("project-lists/", func_base_project_list_api, name="func_base_project_list_api_view"),
+    path("project-create/", func_base_project_create_api, name="func_base_project_create_api"),
     path("project-details/<int:project_id>/", func_base_project_details_api, name="func_base_project_details_api"),
+    path("project-update/<int:project_id>/", func_base_project_update_api, name="func_base_project_update_api"),
+    path("project-delete/<int:project_id>/", func_base_project_delete_api, name="func_base_project_delete_api"),
     path("task-lists/", func_base_task_list_api, name="func_base_task_list_api_view"),
 ]

@@ -7,6 +7,10 @@ User = get_user_model()
 
 # Create your models here.
 class Project(BaseTimeStampedModel):
+    PROJECT_STATUS_OPTIONS = (
+        ("active", "Active"),
+        ("finished", "Finished"),
+    )
     name = models.CharField(max_length=500, unique=True)
     description = models.TextField(blank=True)
     project_manager = models.ForeignKey(
@@ -17,6 +21,9 @@ class Project(BaseTimeStampedModel):
         related_name="project_project_manager",
     )
     members = models.ManyToManyField(User, blank=True, related_name="project_members")
+    status = models.CharField(
+        max_length=20, choices=PROJECT_STATUS_OPTIONS, default="active"
+    )
     
     def __str__(self):
         return self.name
