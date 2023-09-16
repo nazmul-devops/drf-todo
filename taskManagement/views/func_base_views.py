@@ -72,7 +72,7 @@ def func_base_project_update_api(request, project_id, *args, **kwargs):
 def func_base_project_delete_api(request, project_id, *args, **kwargs):
     try:
         try:
-            Project.objects.filter(id=project_id).update(status='deleted')
+            Project.objects.filter(id=project_id).update(status='finished')
             response_data = {"message": "Project deleted successfully"}
             return Response(response_data, status=status.HTTP_204_NO_CONTENT)
         except Project.DoesNotExist:
